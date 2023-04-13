@@ -21,7 +21,15 @@ class MainActivity : AppCompatActivity() {
         val myText: TextView = findViewById(R.id.textView)
         val dice = Dice(6)
         val rollDice = dice.roll()
-        myText.text = rollDice.toString()
+        val luckyNumber = 3
+        var printText :String =""
+        when (rollDice){
+            1->printText="1 you lose "
+            luckyNumber->printText="you win"
+        }
+
+
+        myText.text = printText
     }
 }
 
