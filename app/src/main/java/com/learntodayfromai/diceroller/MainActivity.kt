@@ -1,8 +1,11 @@
 package com.learntodayfromai.diceroller
 
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
@@ -11,25 +14,29 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val rollButton: Button = findViewById(R.id.button)
-        val myText: TextView = findViewById(R.id.textView)
+
         rollButton.setOnClickListener {
             rollDice()
         }
+
+        rollDice()
     }
 
     private fun rollDice() {
-        val myText: TextView = findViewById(R.id.textView)
-        val dice = Dice(6)
+        val myImage: ImageView = findViewById(R.id.imageView)
+        val dice = Dice(4)
         val rollDice = dice.roll()
         val luckyNumber = 3
-        var printText :String =""
-        when (rollDice){
-            1->printText="1 you lose "
-            luckyNumber->printText="you win"
+        var printText : Drawable
+        val drawableResource = when (rollDice){
+            1->R.drawable.dice_1
+            2->R.drawable.dice_2
+            3->R.drawable.dice_3
+            else -> R.drawable.dice_4
         }
 
 
-        myText.text = printText
+        myImage.setImageResource(drawableResource)
     }
 }
 
