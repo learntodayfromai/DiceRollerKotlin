@@ -4,12 +4,17 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import kotlin.concurrent.thread
+
+private const val TAG = "MainAcitity"
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -19,7 +24,10 @@ class MainActivity : AppCompatActivity() {
             rollDice()
         }
 
+
         rollDice()
+        logging()
+        division()
     }
 
     private fun rollDice() {
@@ -37,6 +45,28 @@ class MainActivity : AppCompatActivity() {
 
 
         myImage.setImageResource(drawableResource)
+    }
+
+    fun logging(){
+        Log.v(TAG, "hi")
+    }
+
+    fun division(){
+        val one = 60
+        var two = 4
+        thread(start=true){
+            repeat(4){
+                    Thread.sleep(3000)
+                runOnUiThread{
+                    findViewById<Button>(R.id.button).setText("${one/two}")
+                    Log.v(TAG,"${one/two}")
+                    two--
+                }
+
+
+            }
+        }
+
     }
 }
 
