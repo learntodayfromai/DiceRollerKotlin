@@ -32,6 +32,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun rollDice() {
         val myImage: ImageView = findViewById(R.id.imageView)
+        myImage.setOnClickListener(){
+            myImage.setImageResource(R.drawable.dice_1)
+        }
         val dice = Dice(4)
         val rollDice = dice.roll()
         val luckyNumber = 3
